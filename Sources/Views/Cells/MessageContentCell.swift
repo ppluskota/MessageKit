@@ -214,12 +214,10 @@ open class MessageContentCell: MessageCollectionViewCell {
         let padding = attributes.avatarLeadingTrailingPadding
 
         switch attributes.avatarPosition.horizontal {
-        case .cellLeading:
+        case .cellLeading, .natural:
             origin.x = padding
         case .cellTrailing:
             origin.x = attributes.frame.width - attributes.avatarSize.width - padding
-        case .natural:
-            fatalError(MessageKitError.avatarPositionUnresolved)
         }
 
         switch attributes.avatarPosition.vertical {
@@ -266,12 +264,10 @@ open class MessageContentCell: MessageCollectionViewCell {
 
         let avatarPadding = attributes.avatarLeadingTrailingPadding
         switch attributes.avatarPosition.horizontal {
-        case .cellLeading:
+        case .cellLeading, .natural:
             origin.x = attributes.avatarSize.width + attributes.messageContainerPadding.left + avatarPadding
         case .cellTrailing:
             origin.x = attributes.frame.width - attributes.avatarSize.width - attributes.messageContainerSize.width - attributes.messageContainerPadding.right - avatarPadding
-        case .natural:
-            fatalError(MessageKitError.avatarPositionUnresolved)
         }
 
         messageContainerView.frame = CGRect(origin: origin, size: attributes.messageContainerSize)
@@ -346,12 +342,10 @@ open class MessageContentCell: MessageCollectionViewCell {
 
         // Accessory view is always on the opposite side of avatar
         switch attributes.avatarPosition.horizontal {
-        case .cellLeading:
+        case .cellLeading, .natural:
             origin.x = messageContainerView.frame.maxX + attributes.accessoryViewPadding.left
         case .cellTrailing:
             origin.x = messageContainerView.frame.minX - attributes.accessoryViewPadding.right - attributes.accessoryViewSize.width
-        case .natural:
-            fatalError(MessageKitError.avatarPositionUnresolved)
         }
 
         accessoryView.frame = CGRect(origin: origin, size: attributes.accessoryViewSize)
